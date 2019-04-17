@@ -41,7 +41,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '
 
 
-
 # Environment variable that contains the hosts (mandatory!):
 
 export HOSTS_FILE="${1}"
@@ -55,6 +54,17 @@ fi
 
 export CLUSTER=`cat ${HOSTS_FILE}`
 
+# Environment variable for the user with sudo power:
+read -p 'What is the user with sudo: ' SUDO_USER
+
+export SUDO_USER
+
+# Environment variable for the ssh user:
+
+read -p 'What is the SSH user: ' SSH_USER
+
+export SSH_USER
+
 # Loop for connect in each node and accept its keys server:
 
 for h in ${CLUSTER}; do
@@ -66,3 +76,4 @@ for h in ${CLUSTER}; do
         eval ${CMD}
     done
 done
+
